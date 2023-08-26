@@ -1,7 +1,6 @@
 package com.example.demo.Entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -30,6 +29,8 @@ public class User {
 
     private String password;
 
+    @OneToOne(targetEntity = User.class,cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk", referencedColumnName = "userId")
     private Long role;
 
     private LocalDate createdAt;
