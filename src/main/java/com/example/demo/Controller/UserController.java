@@ -14,6 +14,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @PreAuthorize("hasRole('ROLE_SUPERADMIN') or hasRole('ROLE_CLIENTADMIN') or hasRole('ROLE_SITEADMIN') or hasRole('ROLE_SITEUSER')")
     @GetMapping(value = "/user/{userEmail}")
     public ResponseEntity<User> getUser(@PathVariable("userEmail") String userEmail) {
         return ResponseEntity.ok(userService.getUserByEmail(userEmail));
@@ -25,11 +26,13 @@ public class UserController {
         return ResponseEntity.ok(userService.createUser(newUser));
     }
 
+    @PreAuthorize("hasRole('ROLE_SUPERADMIN')")
     @PutMapping(value = "/saveUser")
     public ResponseEntity<User> createOrUpdateUser(@RequestBody User newOrUpdatedUser) {
         return ResponseEntity.ok(userService.createOrUpdateUser(newOrUpdatedUser));
     }
 
+    @PreAuthorize("hasRole('ROLE_SUPERADMIN')")
     @DeleteMapping(value = "/deleteUser/{userId}")
     public void deleteUserById(@PathVariable("userId") Long userId) {
         userService.deleteUserById(userId);

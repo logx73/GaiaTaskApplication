@@ -30,7 +30,7 @@ public class User {
 
     private String password;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "fk",referencedColumnName = "roleId")
     private Role role;
 
