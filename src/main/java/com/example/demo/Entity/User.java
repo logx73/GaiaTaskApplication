@@ -15,11 +15,12 @@ import java.time.LocalDate;
 @Entity
 public class User {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
 
     private String firstName;
 
-    private String LastName;
+    private String lastName;
 
     private String email;
 
@@ -29,9 +30,9 @@ public class User {
 
     private String password;
 
-    @OneToOne(targetEntity = User.class,cascade = CascadeType.ALL)
-    @JoinColumn(name = "fk", referencedColumnName = "userId")
-    private Long role;
+    @OneToOne
+    @JoinColumn(name = "fk",referencedColumnName = "roleId")
+    private Role role;
 
     private LocalDate createdAt;
 

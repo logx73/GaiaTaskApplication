@@ -1,7 +1,6 @@
 package com.example.demo.Entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -16,6 +15,7 @@ import java.time.LocalDate;
 @Entity
 public class Role {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long roleId;
 
     private String name;
