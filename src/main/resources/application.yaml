@@ -12,3 +12,7 @@ spring:
     username: root
     password: logx73
     driverClassName: com.mysql.cj.jdbc.Driver
+
+#Authentication Credentials for SUPERADMIN
+#username : lokesh.gadiya73@gmail.com
+#password : logx

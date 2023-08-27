@@ -38,16 +38,29 @@ public class UserService {
         Role role = new Role();
         User user = userDao.getUserByEmail(newOrUpdatedUser.getEmail());
         if(newOrUpdatedUser.getRole()!=null){
+            role.setRoleId(user.getRole().getRoleId());
             role.setName(newOrUpdatedUser.getRole().getName());
             role.setUpdatedAt(LocalDate.now());
             user.setRole(role);
         }
-        user.setUsername(newOrUpdatedUser.getUsername());
-        user.setEmail(newOrUpdatedUser.getEmail());
-        user.setFirstName(newOrUpdatedUser.getFirstName());
-        user.setLastName(newOrUpdatedUser.getLastName());
-        user.setMobileNo(newOrUpdatedUser.getMobileNo());
-        user.setPassword(newOrUpdatedUser.getPassword());
+        if(newOrUpdatedUser.getUsername()!=null){
+            user.setUsername(newOrUpdatedUser.getUsername());
+        }
+        if(newOrUpdatedUser.getEmail()!=null){
+            user.setEmail(newOrUpdatedUser.getEmail());
+        }
+        if(newOrUpdatedUser.getFirstName()!=null){
+            user.setFirstName(newOrUpdatedUser.getFirstName());
+        }
+        if(newOrUpdatedUser.getLastName()!=null){
+            user.setLastName(newOrUpdatedUser.getLastName());
+        }
+        if(newOrUpdatedUser.getMobileNo()!=null){
+            user.setMobileNo(newOrUpdatedUser.getMobileNo());
+        }
+        if(newOrUpdatedUser.getPassword()!=null){
+            user.setPassword(passwordEncoder.encode(newOrUpdatedUser.getPassword()));
+        }
         user.setUpdatedAt(LocalDate.now());
         return userDao.createOrUpdateUser(user);
     }
